@@ -96,6 +96,7 @@ function mkdir() {
     })
 }
 mkdir();
+
 // 接下来读取文件夹
 function readdir() {
     console.log("----读取文件夹----");
@@ -108,8 +109,8 @@ function readdir() {
             console.log(item)
         })
     })
-// }
-// readdir()
+}
+readdir()
 
 // 删除文件夹
 function rmdir() {
@@ -124,6 +125,7 @@ function rmdir() {
 rmdir()
 
 
+// 删除一个不为空的文件夹方法，先清空文件夹下所有的文件，在删除空的文件夹
 // 先读取文件夹
 fs.readdir("Node-file-system/dist",function (err,files) {
     // 亲测，这个形参必须传，不传不生效
@@ -139,7 +141,11 @@ fs.readdir("Node-file-system/dist",function (err,files) {
         })
     })
     console.log("----文件夹已经清空了----")
+    // 这个时候才可以删除文件夹
+    fs.rmdir("Node-file-system/dist",function (err) {
+        if (err) {
+            console.error(err)
+        }
+        console.log("文件夹被删除")
+    })
 })
-
-// 这个时候才可以删除文件夹
-fs.rmdir()
