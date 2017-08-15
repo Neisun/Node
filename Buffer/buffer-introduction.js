@@ -2,12 +2,12 @@
  * @Author: hunaisong 
  * @Date: 2017-08-15 11:03:51 
  * @Last Modified by: hunaisong
- * @Last Modified time: 2017-08-15 14:06:30
+ * @Last Modified time: 2017-08-15 14:58:22
  */
 /**
  * Buffer是个什么鬼。
  * Buffer是node.js中的数据块
- * js语言之后字符串数据类型，没有二进制类型。Node.js就创造了一个与String对等的Buffer来对二进制操作
+ * js语言有字符串数据类型，没有二进制类型。Node.js就创造了一个与String对等的Buffer来对二进制操作
  * Buffer是一个专门存放二进制数据的缓存区
  */
 
