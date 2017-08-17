@@ -2,7 +2,7 @@
  * @Author: hunaisong 
  * @Date: 2017-08-17 10:05:25 
  * @Last Modified by: hunaisong
- * @Last Modified time: 2017-08-17 10:49:36
+ * @Last Modified time: 2017-08-17 11:19:12
  */
 // 当内存中无法一次装下需要处理的数据时，或者一边读取一边处理更加高效时，我们就需要用到数据流。NodeJS中通过各种Stream来提供对数据流的操作。
 // 这就是stream的使用场景
@@ -62,8 +62,9 @@ rs.on("end", function () {
  * finish - 所有数据已被写入到底层系统时触发。
  */
 
+
 //  从流中读取文件
-var fs = require("fs");
+/*var fs = require("fs");
 var data = "";
 
 // 创建可读流
@@ -81,4 +82,24 @@ rs.on("end", function () {
 rs.on("error", function (err) {
     console.log(err.stack)
 })
+console.log("执行完毕")*/
+
+// 把文件写入流中
+var fs = require("fs");
+var data = "我就是一个测试文件"
+var ws = fs.createWriteStream(__dirname+"/output.txt")
+// 使用utf8编码，写入文件
+ws.write(data,"utf8")
+// 标记文件末尾
+ws.end();
+ws.on("finish",function () {
+    console.log("写入完成")
+})
+ws.on("error",function (err) {
+    console.log(err.stack)
+})
 console.log("执行完毕")
+
+
+// 管道流，看到这里，一切又是那么熟悉，在配置gulpfile.js时候的pipe不就是管道流么。配置过gulpfile.js的盆友，下边应该是手到擒来
+
