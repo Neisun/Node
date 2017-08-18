@@ -2,7 +2,7 @@
  * @Author: hunaisong 
  * @Date: 2017-08-17 10:05:25 
  * @Last Modified by: hunaisong
- * @Last Modified time: 2017-08-17 11:19:12
+ * @Last Modified time: 2017-08-18 09:30:59
  */
 // 当内存中无法一次装下需要处理的数据时，或者一边读取一边处理更加高效时，我们就需要用到数据流。NodeJS中通过各种Stream来提供对数据流的操作。
 // 这就是stream的使用场景
@@ -85,7 +85,7 @@ rs.on("error", function (err) {
 console.log("执行完毕")*/
 
 // 把文件写入流中
-var fs = require("fs");
+/*var fs = require("fs");
 var data = "我就是一个测试文件"
 var ws = fs.createWriteStream(__dirname+"/output.txt")
 // 使用utf8编码，写入文件
@@ -98,8 +98,38 @@ ws.on("finish",function () {
 ws.on("error",function (err) {
     console.log(err.stack)
 })
-console.log("执行完毕")
+console.log("执行完毕")*/
 
 
-// 管道流，看到这里，一切又是那么熟悉，在配置gulpfile.js时候的pipe不就是管道流么。配置过gulpfile.js的盆友，下边应该是手到擒来
+// 管道流，看到这里，一切又是那么熟悉，在配置gulpfile.js时候的pipe不就是管道流么。配置过gulpfile.js的盆友，下边应该是手到擒来。
 
+// 读文件+写文件+链式流
+/*var fs = require("fs");
+fs.createReadStream(__dirname+"/test.txt")
+.pipe(fs.createWriteStream(__dirname+"/output2.txt"))
+console.log("执行完毕")*/
+
+
+// 链式流压缩文件
+/*var fs = require("fs"),
+    zlib = require("zlib");
+// 创建一个读取流
+fs.createReadStream(__dirname + "/test.txt")
+    // 压缩
+    .pipe(zlib.createGzip())
+    // 写入流
+    .pipe(fs.createWriteStream(__dirname + "/test.txt.gz"))
+
+console.log("执行完毕")*/
+
+
+// 链式流解压文件
+var fs = require("fs"),
+    zlib = require("zlib");
+// 创建一个读取流
+fs.createReadStream(__dirname + "/test.txt.gz")
+    // 解压
+    .pipe(zlib.createGunzip())
+    // 写入流
+    .pipe(fs.createWriteStream(__dirname + "/test3.txt"))
+console.log("解压完毕")
