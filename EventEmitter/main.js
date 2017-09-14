@@ -2,7 +2,7 @@
  * @Author: hunaisong 
  * @Date: 2017-09-12 16:13:32 
  * @Last Modified by: hunaisong
- * @Last Modified time: 2017-09-12 16:30:08
+ * @Last Modified time: 2017-09-12 16:48:25
  */
 // 此案例用来大体上全面展示一下eventEmitter类的api用法
 var events = require("events");
@@ -40,3 +40,5 @@ console.log(count+" 个监听器监听连接事件")
 
 // 程序执行完毕
 console.log('程序执行完毕')
+
+eventEmitter.emit('error')
