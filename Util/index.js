@@ -2,7 +2,7 @@
  * @Author: hunaisong 
  * @Date: 2017-09-20 10:19:53 
  * @Last Modified by: hunaisong
- * @Last Modified time: 2017-09-20 13:31:36
+ * @Last Modified time: 2017-09-20 13:55:30
  */
 // 关于call的用法
 // obj1.method.call(obj2,arg1,arg2);
@@ -40,6 +40,10 @@ function Doggy() {
         console.log(this.name+'在汪汪叫~');
     }
 }
+// 这是在Doggy原型中添加的master函数
+// Doggy.prototype.master = function () {
+//     console.log("Neisun")
+// };
 // 我想让Cat继承这个方法
 function Cat() {
     Doggy.call(this);
@@ -48,5 +52,8 @@ function Cat() {
 }
 var cat = new Cat();
 var dog = new Doggy();
-dog.shout();
+dog.shout(); // 汪星人在汪汪叫;
+dog.master();  // Neisun
 cat.shout(); // 喵星人在汪汪叫~，变种猫！
+cat.master(); // 报错，继承不了。也就是说在原型中定义的属性和方法通过call的方式继承不了，call只是继承了构造函数中的属性和方法
+
