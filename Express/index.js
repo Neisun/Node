@@ -2,7 +2,7 @@
  * @Author: hunaisong 
  * @Date: 2017-09-22 16:13:35 
  * @Last Modified by: hunaisong
- * @Last Modified time: 2017-09-22 17:38:39
+ * @Last Modified time: 2017-09-25 14:27:47
  */
 // 正式开启express框架的学习
 
@@ -13,25 +13,27 @@
  * cnpm install body-parser cookie-parser multer --save
  */
 
-//  Hello,world!案例永远是我们的第一个案例
-var express = require('express');
-var app = express();
-// 使用静态资源
-// 注意路径问题
-// app.use(express.static('public'));
-app.get('/user',(req,res) => {
-    console.log(req.query)
-    console.log(req.params)
-    res.send('Hello,world!');
+//  配置请求路由，最简单的写法
+var express = require('express'),
+    app = express();
+app.get('/', function(req, res) {
+    res.send('主页 get 请求')
 })
-
-var server = app.listen(8081,'127.0.0.1',() => {
-    console.log('服务器启动了！');
-    var host = server.address().address;
+app.post('/', function(req, res) {
+    res.send('主页 post 请求')
+})
+app.get('/user', function(req, res) {
+    res.send('user 页面')
+})
+app.get('/del_user', function(req, res) {
+    res.send('del_user 页面')
+})
+app.get('/ab*cd/', function(req, res) {
+    res.send('正则匹配 页面')
+})
+var server = app.listen(8081, '127.0.0.1', function() {
+    console.log('服务器启动')
     var port = server.address().port;
-    // %s表示字符串
-    // %d表示number
-    // %j表示json
-    // %单个百分号，表示一个占位符
-    console.log('访问地址：http://%s:%s',host,port)
+    var host = server.address().address;
+    console.log('访问地址：http://%s:%s', host, port)
 })
