@@ -2,7 +2,7 @@
  * @Author: hunaisong 
  * @Date: 2017-09-29 14:23:09 
  * @Last Modified by: hunaisong
- * @Last Modified time: 2017-09-29 14:45:22
+ * @Last Modified time: 2017-10-09 10:44:27
  */
 // 向数据库中插入数据
 var mysql = require('mysql');
@@ -14,7 +14,9 @@ var connection = mysql.createConnection({
     database:'test'
 });
 connection.connect();
-var addSql = 'insert into websites(id,name,url,alexa,country) values(0,?,?,?,?)';
+// 创建数据库语法字符串
+var addSql = 'insert into websites (id,name,url,alexa,country) values (0,?,?,?,?)';
+// 创建添加的参数
 var addParams = ['菜鸟工具', 'https://c.runoob.com','23453', 'CN'];
 connection.query(addSql,addParams,(err,result) => {
     if (err) {

@@ -2,7 +2,7 @@
  * @Author: hunaisong 
  * @Date: 2017-09-29 13:26:46 
  * @Last Modified by: hunaisong
- * @Last Modified time: 2017-09-30 11:17:40
+ * @Last Modified time: 2017-10-09 10:26:58
  */
 // 从数据库查询
 var mysql = require('mysql');
@@ -27,3 +27,5 @@ connection.query(sql,function (err,results) {
         console.log('------------------------------\n\n');
     }
 })
+// 获取完数据之后断开连接
+connection.end();
